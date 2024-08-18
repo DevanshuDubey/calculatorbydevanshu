@@ -1,35 +1,146 @@
-//This is made by Devanshu(240001024) 
+//This is made by Devanshu(240001024)
 #include <iostream>
 using namespace std;
 
-int main() {
-    double n1, n2, result;
-    char op;
+double n1, n2, result;
+char op, input, trigfn;
 
-    cout << "Enter the numbers with an operator between them one by one: ";
-    cin >> n1 >> op >> n2;
+double Sqrt(double x) {
+    double guess = x;
+    double epsilon = 0.00001; 
+    for (int i = 0; i < 100; ++i) {
+        double nextGuess = 0.5 * (guess + x / guess); 
+        if ((nextGuess - guess) < epsilon && (guess - nextGuess) < epsilon) {
+            break;
+        }
+        guess = nextGuess;
+    }
+    return guess;
+}
 
-    if (op == '+')
-        result = n1 + n2;
-    else if (op == '-')
-        result = n1 - n2;
-    else if (op == '*')
-        result = n1 * n2;
-    else if (op == '/')
-        result = n1 / n2;
-    else if (op == '^') {
-        if (n2 < 0) {
-            n1 = 1.0 / n1;
-            n2 = -n2;
-        }
-        result = 1.0;
-        for (int i = 0; i < n2; ++i) {
-            result *= n1;
-        }
-    } else {
-        cout << "Invalid operator. Please use +, -, *, /, or ^.";
+double sinbydev(double x) {
+    double term = x;
+    double sum = term;
+    int n = 1;
+
+    for (int i = 1; i < 10; ++i) {
+        term *= -x * x / ((2 * n) * (2 * n + 1));
+        sum += term;
+        ++n;
     }
 
-    cout << "Result: " << result << endl;
+    return sum;
+}
+double cosbydev = Sqrt( 1 - sinbydev(n1)*sinbydev(n1));
+
+int main() {
+    cout << "Select from the following options:\n 1. Arithmetic \n 2. Factorial \n 3. Trigonometric \n 4. SquareRoot ";
+    cin >> input;
+
+    if (input == '1') {
+        cout << "Enter two numbers: ";
+        cin >> n1 >>n2;
+        cout << "Enter the operator: ";
+        cin >> op;
+
+        if (op == '+')
+            result = n1 + n2;
+        else if (op == '-')
+            result = n1 - n2;
+        else if (op == '*')
+            result = n1 * n2;
+        else if (op == '/') {
+            if (n2 != 0)
+                result = n1 / n2;
+            else
+                cout << "Error: Division by zero!" << endl;
+        } else if (op == '^') {
+            if (n2 < 0) {
+                n1 = 1.0 / n1;
+                n2 = -n2;
+            }
+            result = 1.0;
+            for (int i = 0; i < n2; ++i) {
+                result *= n1;
+            }
+        } else {
+            cout << "Invalid operator. Please use +, -, *, /, or ^" << endl;
+            return 1;
+        }
+
+        cout << "Result: " << result << endl;
+    } 
+    else if (input == '2') {
+        cout << "Enter the number: ";
+        cin >> n1;
+
+        double factorial = 1.0;
+        for (int i = 1; i <= n1; i++) {
+            factorial *= i;
+        }
+
+        cout << "The factorial of " << n1 << " is " << factorial << endl;
+    } 
+    else if (input == '3') {
+        cout << "Select one of the following:\n 1.Sin \n 2.Cos \n 3.Tan \n 4.Cosec \n 5.Sec \n 6.Cot";
+        cin >> trigfn;
+        cout << "Enter angle in radians: ";
+        cin >> n1;
+
+        if (trigfn == '1') {
+            result = sinbydev(n1);
+            cout << "sin(" << n1 << ") = " << result << endl;
+        }
+        if (trigfn == '2') {
+            result = cosbydev;
+            cout << "cos(" << n1 << ") = " << result << endl;
+        }
+        if (trigfn == '3') {
+            double tanbydev = sinbydev(n1)/cosbydev ;
+            cout << "tan(" << n1 << ") = " << result << endl;
+        }
+        if (trigfn == '4') {
+            double cosecbydev = 1/sinbydev(n1) ;
+            cout << "cosec(" << n1 << ") = " << result << endl;
+        }
+        if (trigfn == '5') {
+            double secbydev = 1/cosbydev ;
+            cout << "sec(" << n1 << ") = " << result << endl;
+        }
+        if (trigfn == '6') {
+            double cotbydev = cosbydev/sinbydev(n1) ;
+            cout << "cot(" << n1 << ") = " << result << endl;
+        }
+        else {
+            cout << "Invalid trigonometric function selection." << endl;
+        }
+    } 
+    else if (input == '4') {
+        cout << "Enter a positive number: ";
+        cin >> n1;
+
+        if (n1 >= 0) {
+            double sqrtValue = Sqrt(n1);
+            cout << "Approximate square root of " << n1 << " is " << sqrtValue << endl;
+        } else {
+            cout << "Error: Square root of a negative number is not real." << endl;
+        }
+    } 
+    else if (input == '5') {
+     double a,b,c, d= b*b-4*a*c;
+     cout<<"Enter a , b, c in ax^2+bx+c";
+     cin>>a>>b>>c;
+     if(a==0){
+        cout<<"x="<<(-c/b);
+     }
+     if(a!=0){
+
+     }
+    
+    else {
+        cout << "Invalid input. Please select a valid option." << endl;
+    }
+
     return 0;
+}
 }
