@@ -34,7 +34,7 @@ double sinbydev(double x) {
 double cosbydev = Sqrt( 1 - sinbydev(n1)*sinbydev(n1));
 
 int main() {
-    cout << "Select from the following options:\n 1. Arithmetic \n 2. Factorial \n 3. Trigonometric \n 4. SquareRoot ";
+    cout << "Select from the following options:\n 1. Arithmetic \n 2. Factorial \n 3. Trigonometric \n 4. SquareRoot \n 5. Quadratic ";
     cin >> input;
 
     if (input == '1') {
@@ -134,7 +134,12 @@ int main() {
         cout<<"x="<<(-c/b);
      }
      if(a!=0){
-
+       if(d<0){
+        cout<<"x = "<<(-b/(2*a))<<"+-"<<Sqrt(-d)/2*a<<"i , where i is iota";
+       if(d>0){
+        cout<<"x= "<<((-b/2*a)+(Sqrt(d)/2*a))<<" or "<<((-b/2*a)-(Sqrt(d)/2*a));
+       }
+       }
      }
     
     else {
