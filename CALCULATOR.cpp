@@ -173,7 +173,8 @@ int main() {
        }
        else
        {
-        cout<<"No roots";
+       m=Sqrt(-d);
+       cout<<"x= "<<(((-b+m)/2*a))<<" or "<<(((-b-m)/2*a));
        }
        }
     }
