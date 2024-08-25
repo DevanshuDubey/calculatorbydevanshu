@@ -5,6 +5,38 @@ using namespace std;
 double n1, n2, result;
 char op, input, trigfn;
 
+#include <iostream>
+double factorial(double x){
+    double factorial = 1.0;
+        for (int i = 1; i <= n1; i++) {
+            factorial *= i;
+        }
+}
+double exponent(double x, double y){
+    if (y < 0) {
+                x = 1.0 / x;
+                y = -y;
+               }
+        result = 1.0;
+    for (int i = 0; i < y; ++i) {
+                result *= x;
+            }
+}
+double ln(double x)
+    {
+        if(x<=0)
+        {
+            cout<<"Logarithm is undefined for zero and negative numbers. Please enter a number greater than zero."<<endl;
+        }
+        else{
+            double result =0;
+            for (int i = 1; i < 10; i++) {
+            result += (exponent(x - 1, i))*(exponent(-1,i+1));
+            }
+        }
+        return result;
+
+    }
 double Sqrt(double x) {
     double guess = x;
     double epsilon = 0.00001; 
@@ -17,7 +49,6 @@ double Sqrt(double x) {
     }
     return guess;
 }
-
 double sinbydev(double x) {
     double term = x;
     double sum = term;
@@ -34,7 +65,7 @@ double sinbydev(double x) {
 double cosbydev = Sqrt( 1 - sinbydev(n1)*sinbydev(n1));
 
 int main() {
-    cout << "Select from the following options:\n 1. Arithmetic \n 2. Factorial \n 3. Trigonometric \n 4. SquareRoot \n 5. Quadratic ";
+    cout << "Select from the following options:\n 1. Arithmetic \n 2. Factorial \n 3. Trigonometric \n 4. SquareRoot \n 5. Exponential \n 6. Quadratic \n 7. Logarithm ";
     cin >> input;
 
     if (input == '1') {
@@ -54,33 +85,22 @@ int main() {
                 result = n1 / n2;
             else
                 cout << "Error: Division by zero!" << endl;
-        } else if (op == '^') {
-            if (n2 < 0) {
-                n1 = 1.0 / n1;
-                n2 = -n2;
-            }
-            result = 1.0;
-            for (int i = 0; i < n2; ++i) {
-                result *= n1;
-            }
-        } else {
-            cout << "Invalid operator. Please use +, -, *, /, or ^" << endl;
+        } 
+        else {
+            cout << "Invalid operator. Please use +, -, *, /" << endl;
             return 1;
         }
+    
 
         cout << "Result: " << result << endl;
-    } 
+    }
+
     else if (input == '2') {
         cout << "Enter the number: ";
         cin >> n1;
-
-        double factorial = 1.0;
-        for (int i = 1; i <= n1; i++) {
-            factorial *= i;
-        }
-
-        cout << "The factorial of " << n1 << " is " << factorial << endl;
+        cout << "The factorial of " << n1 << " is " << factorial(n1) << endl;
     } 
+
     else if (input == '3') {
         cout << "Select one of the following:\n 1.Sin \n 2.Cos \n 3.Tan \n 4.Cosec \n 5.Sec \n 6.Cot";
         cin >> trigfn;
@@ -115,6 +135,7 @@ int main() {
             cout << "Invalid trigonometric function selection." << endl;
         }
     } 
+    
     else if (input == '4') {
         cout << "Enter a positive number: ";
         cin >> n1;
@@ -126,26 +147,46 @@ int main() {
             cout << "Error: Square root of a negative number is not real." << endl;
         }
     } 
+    
     else if (input == '5') {
+    cout<<"Enter base: ";
+    cin>>n1;
+    cout<<"Enter exponent: ";
+    cin>>n2;
+    result = exponent(n1,n2);
+    cout<<"The result of "<<n1<<" to the power "<<n2<<" is "<<exponent(n1,n2);
+    }
+
+    else if (input == '6') {
      double a,b,c, d= b*b-4*a*c;
-     cout<<"Enter a , b, c in ax^2+bx+c";
+     cout<<"Enter a , b, c in ax^2+bx+c: ";
      cin>>a>>b>>c;
      if(a==0){
         cout<<"x="<<(-c/b);
      }
      if(a!=0){
        if(d<0){
+        cout<<Sqrt(d);
         cout<<"x = "<<(-b/(2*a))<<"+-"<<Sqrt(-d)/2*a<<"i , where i is iota";
-       if(d>0){
+       if(d>=0){
+        cout<<Sqrt(d);
         cout<<"x= "<<((-b/2*a)+(Sqrt(d)/2*a))<<" or "<<((-b/2*a)-(Sqrt(d)/2*a));
        }
        }
      }
-    
+    }
+
+    else if (input == '7') {
+        cout<<"enter number: ";
+        cin>>n1;
+        cout<<"enter base: ";
+        cin>>n2;
+        cout<<(ln(n1)/ln(n2));
+    }
+
     else {
         cout << "Invalid input. Please select a valid option." << endl;
     }
 
     return 0;
-}
 }
