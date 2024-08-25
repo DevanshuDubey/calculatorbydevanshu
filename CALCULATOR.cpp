@@ -2,7 +2,7 @@
 #include <iostream>
 using namespace std;
 
-double n1, n2, result;
+double n1, n2, result,m;
 char op, input, trigfn;
 double factorial(double x){
     double factorial = 1.0;
@@ -129,9 +129,6 @@ int main() {
             double cotbydev = cosbydev/sinbydev(n1) ;
             cout << "cot(" << n1 << ") = " << result << endl;
         }
-        else {
-            cout << "Invalid trigonometric function selection." << endl;
-        }
     } 
     
     else if (input == '4') {
@@ -156,22 +153,29 @@ int main() {
     }
 
     else if (input == '6') {
-     double a,b,c, d= b*b-4*a*c;
+     double a,b,c,d;
      cout<<"Enter a , b, c in ax^2+bx+c: ";
      cin>>a>>b>>c;
+     d=b*b-4*a*c;
      if(a==0){
         cout<<"x="<<(-c/b);
      }
-     if(a!=0){
-       if(d<0){
-        cout<<Sqrt(d);
-        cout<<"x = "<<(-b/(2*a))<<"+-"<<Sqrt(-d)/2*a<<"i , where i is iota";
-       if(d>=0){
-        cout<<Sqrt(d);
-        cout<<"x= "<<((-b/2*a)+(Sqrt(d)/2*a))<<" or "<<((-b/2*a)-(Sqrt(d)/2*a));
+    else
+     {
+       if(d>0)
+       {
+        m=Sqrt(d);
+        cout<<"x= "<<(((-b+m)/2*a))<<" or "<<(((-b-m)/2*a));
+       }
+       if(d==0)
+       {
+        cout<<"x= "<<(-b/2*a);
+       }
+       else
+       {
+        cout<<"No roots";
        }
        }
-     }
     }
 
     else if (input == '7') {
