@@ -4,8 +4,6 @@ using namespace std;
 
 double n1, n2, result;
 char op, input, trigfn;
-
-#include <iostream>
 double factorial(double x){
     double factorial = 1.0;
         for (int i = 1; i <= n1; i++) {
