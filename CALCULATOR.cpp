@@ -9,6 +9,7 @@ double factorial(double x){
         for (int i = 1; i <= n1; i++) {
             factorial *= i;
         }
+        return factorial;
 }
 double exponent(double x, double y){
     if (y < 0) {
@@ -19,6 +20,7 @@ double exponent(double x, double y){
     for (int i = 0; i < y; ++i) {
                 result *= x;
             }
+        return result;
 }
 double ln(double x)
     {
